@@ -1,4 +1,4 @@
-"""Khung cửa sổ ứng dụng Tkinter."""
+
 import tkinter as tk
 
 
