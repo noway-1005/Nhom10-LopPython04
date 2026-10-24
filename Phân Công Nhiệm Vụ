@@ -1,0 +1,39 @@
+PHÂN CÔNG 
+	Thành viên	
+1	Châu Huỳnh Trâm	tv1-du-lieu-file	: Dữ liệu cơ bản, kiểm tra dữ liệu, file JSON
+2	Lê Minh Thư	tv2-kho-giao-dich	:  Nghiệp vụ kho: giao dịch nhập/xuất (lớp trừu tượng, kế thừa), lớp Kho
+3	Nguyễn Thị Họa My	tv3-tai-khoan-giao-dien	:  Tài khoản, phân quyền, khung giao diện, đóng gói
+4	Nguyễn Thị Hồng Vy	tv4-api-thong-ke	:  Món ăn & chế biến, API/crawl, thống kê Canvas, báo cáo, widget tùy biến
+
+TV 1 - Dữ liệu cơ bản, kiểm tra dữ liệu, file JSON
+Lớp: NguyenLieu, NhaCungCap, JsonFile
+config.py, exceptions.py, main.py
+models/nguyen_lieu.py, models/nha_cung_cap.py
+services/validators.py (Regex), services/tien_ich.py, services/file_handler.py
+ui/tab_nguyen_lieu.py, ui/tab_nha_cung_cap.py
+Test: nhóm TestDuLieuVaRegex (TC01–07), TestFileJson (TC18–23)
+Property/setter, Regex, đọc-ghi JSON an toàn (with, try-except, backup)
+
+TV 2 - Nghiệp vụ kho
+Lớp: GiaoDichKho (trừu tượng), PhieuNhap, PhieuXuat, Kho
+models/giao_dich.py, services/kho.py
+ui/tab_giao_dich.py
+Test: TestNghiepVuKho (TC08–12, TC14), TestTimKiemCanhBaoThongKe (TC15–17)
+Kế thừa/đa hình/lớp trừu tượng, giao dịch nguyên tử, tìm kiếm không dấu, cảnh báo, thống kê
+
+TV 3 - Tài khoản, khung giao diện, đóng gói
+Lớp: TaiKhoan, AuthManager, UngDung, ManHinhChinh, FrameDangNhap, các hộp thoại
+models/tai_khoan.py, services/auth.py, services/nhat_ky.py
+ui/app.py, ui/man_hinh_chinh.py, ui/dang_nhap.py, ui/tab_tai_khoan.py, ui/helpers.py
+Test: TestTaiKhoan (TC24–27)
+Đóng gói .exe (PyInstaller), thử trên máy khác, viết hướng dẫn cài đặt
+Mật khẩu, phân quyền, Layout Manager, xử lý sự kiện, decorator an_toan
+
+TV 4 - Món ăn, API, thống kê, báo cáo, widget tùy biến
+Lớp: MonAn, DateEntry, DataTree, BarChart
+models/mon_an.py, ui/tab_mon_an.py
+services/crawler.py, services/sample_data.py (random), services/report.py
+ui/widgets.py (DateEntry, DataTree, BarChart), ui/tab_thong_ke.py, ui/tab_du_lieu.py
+Test: TC13 (chế biến, thuộc TestNghiepVuKho), TestCrawler (TC28–30)
+Chạy crawl khi có Internet, nộp data/crawl_monan.json
+Định mức món, tính nguyên liệu cần, chế biến tự tạo phiếu xuất; gọi API (urllib, timeout, lỗi kết nối), làm sạch dữ liệu, Canvas, custom widget, luồng nền (threading)
